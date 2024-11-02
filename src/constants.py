@@ -1,0 +1,1 @@
+DEEPLAKE_DOCS_INDEX_NAME = "langchain_docs"
