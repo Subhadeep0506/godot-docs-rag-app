@@ -1,0 +1,14 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "ultimately-unruffled-baboon.data-1.apse1.tembo.io",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "MedRAG",
+      "database": "postgres",
+      "username": "postgres",
+      "password": "HQ5Ew0bxClqfuCUb"
+    }
+  ]
+}
