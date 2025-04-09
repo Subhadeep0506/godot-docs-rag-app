@@ -1,10 +1,7 @@
 cohere==5.11.3
 ipykernel==6.29.5
 ipython==8.29.0
-<<<<<<< HEAD
-=======
 infisical-python==2.3.5
->>>>>>> 02f9205 (New changes)
 jedi==0.19.1
 langchain==0.3.7
 langchain-cohere==0.3.1

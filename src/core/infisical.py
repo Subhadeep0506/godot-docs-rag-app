@@ -8,7 +8,7 @@ from infisical_client import (
     AuthenticationOptions,
     UniversalAuthMethod,
 )
-from ...core.logger import SingletonLogger
+from .logger import SingletonLogger
 
 
 class InfisicalManagedCredentials:
