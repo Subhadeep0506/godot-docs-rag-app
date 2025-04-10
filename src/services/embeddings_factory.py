@@ -27,7 +27,7 @@ class EmbeddingsFactory:
             logger.info("Using Sentence Transformers embeddings model.")
             if model_id is not None:
                 return SentenceTransformerEmbeddings(
-                    model=model_id,
+                    model_name=model_id,
                     model_kwargs={  
                         "device": torch.device(
                             "cuda" if torch.cuda.is_available() else "cpu"

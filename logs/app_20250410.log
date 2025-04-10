@@ -1,0 +1,33 @@
+2025-04-10 08:41:42 - langchain_astradb.vectorstores - INFO - vector store default init, collection 'docs'
+2025-04-10 08:52:26 - langchain_astradb.vectorstores - INFO - vector store default init, collection 'docs'
+2025-04-10 08:56:08 - langchain_astradb.vectorstores - INFO - vector store default init, collection 'docs'
+2025-04-10 08:59:08 - langchain_astradb.vectorstores - INFO - vector store default init, collection 'docs'
+2025-04-10 10:05:45 - langchain_astradb.vectorstores - INFO - vector store default init, collection 'godot_docs'
+2025-04-10 10:08:24 - langchain_astradb.vectorstores - INFO - vector store default init, collection 'godot_docs'
+2025-04-10 11:57:30 - src.services.embeddings_factory - INFO - Using Sentence Transformers embeddings model.
+2025-04-10 12:23:31 - src.services.embeddings_factory - INFO - Using Sentence Transformers embeddings model.
+2025-04-10 12:23:39 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: intfloat/multilingual-e5-large-instruct
+2025-04-10 12:25:03 - langchain_astradb.vectorstores - INFO - vector store default init, collection 'godot_docs'
+2025-04-10 12:25:04 - root - INFO - Attempting to fetch keyspace from environment variable 'ASTRA_DB_KEYSPACE'
+2025-04-10 12:25:04 - root - INFO - Detecting API environment 'prod' from supplied endpoint
+2025-04-10 12:25:04 - astrapy.data.database - INFO - createCollection('godot_docs')
+2025-04-10 12:25:05 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace "HTTP/1.1 200 OK"
+2025-04-10 12:25:05 - astrapy.utils.api_commander - WARNING - APICommander about to raise from: [{'message': "Collection already exists: trying to create Collection ('godot_docs') with different settings", 'errorCode': 'EXISTING_COLLECTION_DIFFERENT_SETTINGS', 'id': '35579204-43a8-4dc4-a0f1-dac27ee3502d', 'title': 'Collection already exists', 'family': 'REQUEST', 'scope': 'EMPTY'}]
+2025-04-10 12:25:05 - astrapy.data.database - INFO - findCollections
+2025-04-10 12:25:05 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace "HTTP/1.1 200 OK"
+2025-04-10 12:25:05 - astrapy.data.database - INFO - finished findCollections
+2025-04-10 12:30:48 - astrapy.data.collection - INFO - inserting 7 documents in 'godot_docs'
+2025-04-10 12:30:48 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-10 12:30:50 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-10 12:30:50 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-10 12:39:34 - astrapy.data.collection - INFO - inserting 121 documents in 'godot_docs'
+2025-04-10 12:39:34 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-10 12:39:34 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-10 12:39:34 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-10 12:39:36 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-10 12:39:36 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-10 12:39:36 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-10 12:39:36 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-10 12:39:36 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-10 12:39:36 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-10 12:39:36 - astrapy.data.collection - INFO - finished inserting 121 documents in 'godot_docs'
