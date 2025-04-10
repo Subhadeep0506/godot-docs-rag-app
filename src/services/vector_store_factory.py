@@ -3,6 +3,7 @@ from typing import Union
 
 from langchain_milvus.vectorstores import Milvus
 from langchain_postgres.vectorstores import PGVector
+from langchain_astradb import AstraDBVectorStore
 from pymilvus import DataType, MilvusClient
 
 from ..enums import VectorStoreService
@@ -16,15 +17,18 @@ class VectorStoreFactory:
     def get_vectorstore(
         vectorstore_service: str,
         embeddings,
-    ) -> Union[PGVector, Milvus]:
-        if vectorstore_service == VectorStoreService.PGVECTOR.value:
-            logger.info("Using PGVector")
-            return PGVector(
-                embeddings=embeddings,
-                collection_name=os.environ["POSTGRES_COLLECTION_NAME"],
-                connection=os.environ["POSTGRES_DATABASE_URI"],
-                use_jsonb=True,
-            )
+    ) -> Union[AstraDBVectorStore, Milvus]:
+        if vectorstore_service == VectorStoreService.ASTRADB.value:
+            logger.info("Using AstraDB")
+            try:
+                return AstraDBVectorStore(
+                    collection_name=os.environ["ASTRADB_COLLECTION_NAME"],
+                    embedding=embeddings,
+                    api_endpoint=os.environ["ASTRA_URI"],
+                    token=os.environ["ASTRA_TOKEN"],
+                )
+            except Exception as e:
+                logger.error("Error connecting to AstraDB: %s", e)
         elif vectorstore_service == VectorStoreService.MILVUS.value:
             logger.info("Using Milvus")
             client = MilvusClient(

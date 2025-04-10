@@ -13,5 +13,5 @@ class LLMService(Enum):
 
 
 class VectorStoreService(Enum):
-    PGVECTOR = "pgvector"
     MILVUS = "milvus"
+    ASTRADB = "astradb"
