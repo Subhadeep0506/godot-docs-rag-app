@@ -1,1 +1,71 @@
 2025-04-11 01:05:19 - src.services.embeddings_factory - INFO - Using Sentence Transformers embeddings model.
+2025-04-11 23:40:27 - DailyMailSummarizer - ERROR - Error occured while fetching secrets: Received error message from server: (status 403 Forbidden), {"error":"Identity is not a member of the specified project with ID '5ad90f59-a082-47c1-85d8-fab58959f04c'","message":"You are not allowed to access this resource","reqId":"req-PfndOdTv36opay","statusCode":403}
+2025-04-11 23:40:27 - DailyMailSummarizer - INFO - Infisical Managed Credentials initialized
+2025-04-11 23:41:35 - src.core.infisical - INFO - Infisical Managed Credentials fetched
+2025-04-11 23:41:35 - src.core.infisical - INFO - Infisical Managed Credentials initialized
+2025-04-11 23:43:53 - src.core.infisical - INFO - Infisical Managed Credentials fetched
+2025-04-11 23:43:53 - src.core.infisical - INFO - Infisical Managed Credentials initialized
+2025-04-11 23:43:59 - src.services.embeddings_factory - INFO - Using Sentence Transformers embeddings model.
+2025-04-11 23:44:03 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: intfloat/multilingual-e5-large-instruct
+2025-04-11 23:45:50 - src.services.vector_store_factory - INFO - Using AstraDB
+2025-04-11 23:45:50 - langchain_astradb.vectorstores - INFO - vector store default init, collection 'godot_docs'
+2025-04-11 23:45:51 - root - INFO - Attempting to fetch keyspace from environment variable 'ASTRA_DB_KEYSPACE'
+2025-04-11 23:45:51 - root - INFO - Detecting API environment 'prod' from supplied endpoint
+2025-04-11 23:45:51 - astrapy.data.database - INFO - createCollection('godot_docs')
+2025-04-11 23:45:52 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace "HTTP/1.1 200 OK"
+2025-04-11 23:45:52 - astrapy.utils.api_commander - WARNING - APICommander about to raise from: [{'message': "Collection already exists: trying to create Collection ('godot_docs') with different settings", 'errorCode': 'EXISTING_COLLECTION_DIFFERENT_SETTINGS', 'id': '81bbecf8-b8ae-4683-b0d4-4b7ddcbca712', 'title': 'Collection already exists', 'family': 'REQUEST', 'scope': 'EMPTY'}]
+2025-04-11 23:45:52 - astrapy.data.database - INFO - findCollections
+2025-04-11 23:45:53 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace "HTTP/1.1 200 OK"
+2025-04-11 23:45:53 - astrapy.data.database - INFO - finished findCollections
+2025-04-11 23:47:25 - src.core.ingestion - INFO - Starting ingestion from dataset/rtdocs/docs.godotengine.org/en/latest/about
+2025-04-11 23:47:33 - src.core.ingestion - INFO - Loaded 113 documents from dataset/rtdocs/docs.godotengine.org/en/latest/about
+2025-04-11 23:47:58 - astrapy.data.collection - INFO - inserting 100 documents in 'godot_docs'
+2025-04-11 23:47:58 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-11 23:47:58 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-11 23:48:00 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-11 23:48:00 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-11 23:48:00 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-11 23:48:00 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-11 23:48:00 - astrapy.data.collection - INFO - finished inserting 100 documents in 'godot_docs'
+2025-04-11 23:48:00 - src.core.ingestion - INFO - Ingested 100/2 chunks.
+2025-04-11 23:48:02 - astrapy.data.collection - INFO - inserting 13 documents in 'godot_docs'
+2025-04-11 23:48:02 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-11 23:48:03 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-11 23:48:03 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-11 23:48:03 - astrapy.data.collection - INFO - finished inserting 13 documents in 'godot_docs'
+2025-04-11 23:48:03 - src.core.ingestion - INFO - Ingested 200/2 chunks.
+2025-04-11 23:50:09 - src.core.ingestion - INFO - Starting ingestion from dataset/rtdocs/docs.godotengine.org/en/latest/getting_started/
+2025-04-11 23:50:50 - src.core.ingestion - INFO - Loaded 307 documents from dataset/rtdocs/docs.godotengine.org/en/latest/getting_started/
+2025-04-11 23:51:12 - astrapy.data.collection - INFO - inserting 100 documents in 'godot_docs'
+2025-04-11 23:51:12 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-11 23:51:12 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-11 23:51:14 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-11 23:51:14 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-11 23:51:14 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-11 23:51:14 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-11 23:51:14 - astrapy.data.collection - INFO - finished inserting 100 documents in 'godot_docs'
+2025-04-11 23:51:14 - src.core.ingestion - INFO - Ingested 100/4 chunks.
+2025-04-11 23:51:35 - astrapy.data.collection - INFO - inserting 100 documents in 'godot_docs'
+2025-04-11 23:51:35 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-11 23:51:35 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-11 23:51:38 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-11 23:51:38 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-11 23:51:38 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-11 23:51:38 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-11 23:51:38 - astrapy.data.collection - INFO - finished inserting 100 documents in 'godot_docs'
+2025-04-11 23:51:38 - src.core.ingestion - INFO - Ingested 200/4 chunks.
+2025-04-11 23:52:02 - astrapy.data.collection - INFO - inserting 100 documents in 'godot_docs'
+2025-04-11 23:52:02 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-11 23:52:02 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-11 23:52:05 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-11 23:52:05 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-11 23:52:06 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-11 23:52:06 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-11 23:52:06 - astrapy.data.collection - INFO - finished inserting 100 documents in 'godot_docs'
+2025-04-11 23:52:06 - src.core.ingestion - INFO - Ingested 300/4 chunks.
+2025-04-11 23:52:08 - astrapy.data.collection - INFO - inserting 7 documents in 'godot_docs'
+2025-04-11 23:52:08 - astrapy.data.collection - INFO - insertMany(chunk) on 'godot_docs'
+2025-04-11 23:52:09 - httpx - INFO - HTTP Request: POST https://a383bf7d-8870-4ec9-ae8a-8e8b2c6010a0-westus3.apps.astra.datastax.com/api/json/v1/default_keyspace/godot_docs "HTTP/1.1 200 OK"
+2025-04-11 23:52:09 - astrapy.data.collection - INFO - finished insertMany(chunk) on 'godot_docs'
+2025-04-11 23:52:09 - astrapy.data.collection - INFO - finished inserting 7 documents in 'godot_docs'
+2025-04-11 23:52:09 - src.core.ingestion - INFO - Ingested 400/4 chunks.

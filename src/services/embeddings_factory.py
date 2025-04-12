@@ -2,9 +2,8 @@ import os
 from typing import Union
 
 import torch
-from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from  langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from langchain_cohere.embeddings import CohereEmbeddings
-
 from ..enums import EmbeddingsService
 from .logger_service import LoggerService
 

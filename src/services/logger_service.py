@@ -1,6 +1,17 @@
 import logging
 import os
+
 from datetime import datetime
+
+
+class HTTPFilter(logging.Filter):
+    """Filter out HTTP-related log messages"""
+
+    def filter(self, record):
+        http_keywords = ["http", "https", "GET", "POST", "PUT", "DELETE"]
+        return not any(
+            keyword.lower() in record.getMessage().lower() for keyword in http_keywords
+        )
 
 
 class LoggerService:
@@ -30,10 +41,11 @@ class LoggerService:
 
         # Clear existing handlers
         root_logger.handlers.clear()
-
+        http_filter = HTTPFilter()
         # Console Handler
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
+        console_handler.addFilter(http_filter)
         root_logger.addHandler(console_handler)
 
         # File Handler with daily log rotation
@@ -42,6 +54,7 @@ class LoggerService:
         )
         file_handler = logging.FileHandler(log_filename)
         file_handler.setFormatter(formatter)
+        file_handler.addFilter(http_filter)
         root_logger.addHandler(file_handler)
 
     @staticmethod

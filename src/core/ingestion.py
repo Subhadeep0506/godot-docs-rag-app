@@ -1,34 +1,70 @@
 from typing import List
 
-from langchain.document_loaders.readthedocs import ReadTheDocsLoader
+from src.utils.rtd_reader import ReadTheDocsReader
+from src.utils.parqet_reader import ConversationsReader
+from datasets import load_dataset
+from tqdm import tqdm
 from langchain.schema import Document
 from langchain.vectorstores.base import VectorStore
+from src.services.logger_service import LoggerService
+
+logger = LoggerService.get_logger(__name__)
 
 
 class Ingestion:
-    def __init__(self, data_path: str, vectorstore: VectorStore):
-        self.loader = ReadTheDocsLoader(
-            path=data_path,
-            exclude_links_ratio=0.5,
-        )
+    def __init__(self, vectorstore: VectorStore):
+        self.rtd_loader = ReadTheDocsReader()
+        self.conversationds_loader = ConversationsReader()
         self.vectorstore = vectorstore
 
-    def _inject_metadata(self, pages: List[Document]) -> List[Document]:
-        def get_category(source: str) -> str:
-            category = source.split("latest/")[-1].split("/")[0]
-            return category
+    def ingest_docs(self, directory: str):
+        try:
+            logger.info(f"Starting ingestion from {directory}")
+            docs = self.rtd_loader.load(directory=directory)
+            chunk_size = 100
+            total = len(docs)
+            logger.info(f"Loaded {total} documents from {directory}")
+            total_chunks = (total + chunk_size - 1) // chunk_size
+            with tqdm(
+                total=total_chunks,
+                desc="Ingesting documents in 100 chunk sizes...",
+                unit="chunk",
+            ) as pbar:
+                for i in range(0, total, chunk_size):
+                    chunk = docs[i : i + chunk_size]
+                    _ = self.vectorstore.add_documents(
+                        documents=chunk,
+                    )
+                    pbar.update(1)
+                    logger.info(f"Ingested {i+chunk_size}/{total} chunks.")
+            logger.info(
+                f"Finished ingestion from {directory}, ingested {total} documents."
+            )
+        except Exception as e:
+            logger.error(f"Error during ingestion: {e}")
 
-        for page in pages:
-            page.metadata = {
-                "category": get_category(page.metadata["source"]),
-                "source": page.metadata["source"].split("latest/")[-1],
-            }
-        return pages
+    def ingest_conversations(self, dataset_name: str):
+        try:
+            docs = self.conversationds_loader.load(dataset_name=dataset_name)
+            total = len(docs)
+            chunk_size = 100
+            logger.info(f"Loaded conversations from {dataset_name}")
 
-    def ingest(self):
-        pages = self.loader.load()
-        pages = self._inject_metadata(pages)
-
-        self.vectorstore.add_documents(
-            documents=pages,
-        )
+            total_chunks = (total + chunk_size - 1) // chunk_size
+            with tqdm(
+                total=total_chunks,
+                desc="Ingesting conversations in 100 chunk sizes...",
+                unit="chunk",
+            ) as pbar:
+                for i in range(0, total, chunk_size):
+                    chunk = docs[i : i + chunk_size]
+                    _ = self.vectorstore.add_documents(
+                        documents=chunk,
+                    )
+                    pbar.update(1)
+                    logger.info(f"Ingested {i+chunk_size}/{total} chunks.")
+            logger.info(
+                f"Finished ingestion of {dataset_name}, ingested {total} Conversations."
+            )
+        except Exception as e:
+            logger.error(f"Error during ingestion: {e}")

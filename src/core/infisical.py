@@ -8,12 +8,13 @@ from infisical_client import (
     AuthenticationOptions,
     UniversalAuthMethod,
 )
-from .logger import SingletonLogger
+from src.services.logger_service import LoggerService
+
+logger = LoggerService.get_logger(__name__)
 
 
 class InfisicalManagedCredentials:
     def __init__(self) -> None:
-        self.logger = SingletonLogger().logger
         self.client = InfisicalClient(
             ClientSettings(
                 auth=AuthenticationOptions(
@@ -26,7 +27,7 @@ class InfisicalManagedCredentials:
             )
         )
         self()
-        self.logger.info("Infisical Managed Credentials initialized")
+        logger.info("Infisical Managed Credentials initialized")
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         try:
@@ -37,6 +38,6 @@ class InfisicalManagedCredentials:
                     attach_to_process_env=True,
                 ),
             )
-            self.logger.info("Infisical Managed Credentials fetched")
+            logger.info("Infisical Managed Credentials fetched")
         except Exception as e:
-            self.logger.error(f"Error occured while fetching secrets: {e}")
+            logger.error(f"Error occured while fetching secrets: {e}")

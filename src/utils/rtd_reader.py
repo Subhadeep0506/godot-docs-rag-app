@@ -1,5 +1,8 @@
 from langchain.document_loaders.readthedocs import ReadTheDocsLoader
 from langchain.text_splitter import CharacterTextSplitter
+from src.services.logger_service import LoggerService
+
+logger = LoggerService.get_logger(__name__)
 
 
 class ReadTheDocsReader:
@@ -10,6 +13,7 @@ class ReadTheDocsReader:
             chunk_size=1000,
             chunk_overlap=200,
         )
+        logger.info("ReadTheDocsReader initialized.")
 
     def __load_directory(self, directory: str):
         self.loader = ReadTheDocsLoader(
