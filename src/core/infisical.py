@@ -15,19 +15,22 @@ logger = LoggerService.get_logger(__name__)
 
 class InfisicalManagedCredentials:
     def __init__(self) -> None:
-        self.client = InfisicalClient(
-            ClientSettings(
-                auth=AuthenticationOptions(
-                    universal_auth=UniversalAuthMethod(
-                        client_id=os.getenv("INFISICAL_CLIENT_ID"),
-                        client_secret=os.getenv("INFISICAL_SECRET"),
+        try:
+            self.client = InfisicalClient(
+                ClientSettings(
+                    auth=AuthenticationOptions(
+                        universal_auth=UniversalAuthMethod(
+                            client_id=os.getenv("INFISICAL_CLIENT_ID"),
+                            client_secret=os.getenv("INFISICAL_SECRET"),
+                        ),
                     ),
-                ),
-                cache_ttl=1,
+                    cache_ttl=1,
+                )
             )
-        )
-        self()
-        logger.info("Infisical Managed Credentials initialized")
+            self()
+            logger.info("Infisical Managed Credentials initialized")
+        except Exception as e:
+            logger.error(f"Error initializing Infisical client: {e}")
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         try:
@@ -41,3 +44,4 @@ class InfisicalManagedCredentials:
             logger.info("Infisical Managed Credentials fetched")
         except Exception as e:
             logger.error(f"Error occured while fetching secrets: {e}")
+            raise e

@@ -15,3 +15,8 @@ class LLMService(Enum):
 class VectorStoreService(Enum):
     MILVUS = "milvus"
     ASTRADB = "astradb"
+
+
+class MemoryService(Enum):
+    UPSTASH = "upstash"
+    ASTRADB = "astradb"
