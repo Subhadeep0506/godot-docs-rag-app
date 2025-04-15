@@ -16,5 +16,7 @@
     "workbench.iconTheme": "material-icon-theme",
     "window.autoDetectColorScheme": true,
     "workbench.layoutControl.enabled": false,
-    "inlineChat.mode": "preview"
+    "inlineChat.mode": "preview",
+    "IDX.aI.enableInlineCompletion": true,
+    "IDX.aI.enableCodebaseIndexing": true
 }
