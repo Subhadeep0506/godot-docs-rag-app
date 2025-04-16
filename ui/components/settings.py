@@ -29,6 +29,24 @@ async def settings_setup():
                 step=0.1,
             ),
             Select(
+                id="vectorstore_service",
+                label="Vectorstore Service",
+                items={
+                    "AstraDB": "astradb",
+                    "Milvus": "milvus",
+                },
+                initial_value="astradb",
+            ),
+            Select(
+                id="memory_service",
+                label="Memory Service",
+                items={
+                    "Upstash Redis": "upstash",
+                    "AstraDB": "astradb",
+                },
+                initial_value="astradb",
+            ),
+            Select(
                 id="category",
                 label="Category",
                 items={

@@ -37,13 +37,13 @@ clean_filter = {k: v for k, v in filter.items() if v}
 
 query = Query(vectorstore=vector_store)
 
-response = query.generate_response(
+response = await query.generate_response(
     query="Can you make it step-wise only? Don't format it into sub steps.",  # "How do I create a 2D tileset?",
     category="tutorials",
     sub_category="2d",
     source=None,
     top_k=10,
-    session_id="124435092839",
+    session_id="2893748923647829",
     memory_service="astradb",
     llm=llm,
 )

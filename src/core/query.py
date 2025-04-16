@@ -99,7 +99,7 @@ class Query:
             agent_executor = AgentExecutor(
                 agent=agent,
                 tools=tools,
-                verbose=True,
+                verbose=False,
                 handle_parsing_errors=True,
                 return_intermediate_steps=True,
             )
