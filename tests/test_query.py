@@ -24,7 +24,6 @@ vector_store = VectorStoreFactory().get_vectorstore(
     embeddings=embeddings,
 )
 llm = LLMFactory().get_chat_model(
-    llm_service="cohere",
     model_name="command-a-03-2025",
 )
 
@@ -37,7 +36,7 @@ clean_filter = {k: v for k, v in filter.items() if v}
 
 query = Query(vectorstore=vector_store)
 
-response = await query.generate_response(
+response = query.generate_response(
     query="Can you make it step-wise only? Don't format it into sub steps.",  # "How do I create a 2D tileset?",
     category="tutorials",
     sub_category="2d",

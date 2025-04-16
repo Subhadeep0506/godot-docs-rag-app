@@ -52,6 +52,7 @@ async def start_app():
 async def chat_resume(thread):
     chainlit_thread_id = thread.get("id")
     cl.user_session.set("current_thread_id", chainlit_thread_id)
+    # TODO: Implement logic to resume the chat with the last message
 
 
 @cl.on_settings_update
@@ -60,13 +61,8 @@ async def settings_update(settings: Dict[str, str]):
         vectorstore_service=settings["vectorstore_service"],
         embeddings=embeddings,
     )
-    if "gemini" in settings["model"]:
-        llm_service = "gemini"
-    elif "command" in settings["model"]:
-        llm_service = "cohere"
 
     llm = LLMFactory().get_chat_model(
-        llm_service=llm_service,
         model_name=settings["model"],
     )
     query = Query(vectorstore=vector_store)

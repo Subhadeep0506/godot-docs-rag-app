@@ -10,6 +10,7 @@ class LLMService(Enum):
     COHERE = "cohere"
     GEMINI = "gemini"
     GROQ = "groq"
+    MISTRAL = "mistral"
 
 
 class VectorStoreService(Enum):
