@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+import os
 
 _ = load_dotenv()
 
@@ -27,13 +28,13 @@ def load_embeddings():
     )
     return embeddings
 
+
 embeddings = load_embeddings()
+
 
 @cl.data_layer
 def get_data_layer():
-    return SQLAlchemyDataLayer(
-        conninfo="postgresql+asyncpg://user_sessions_owner:npg_yRrcv6xmpuH3@ep-curly-paper-a13vinbr-pooler.ap-southeast-1.aws.neon.tech/user_sessions"
-    )
+    return SQLAlchemyDataLayer(conninfo=os.environ.get("SUPABASE_POSTGRESQL_URI"))
 
 
 @cl.set_starters
@@ -95,15 +96,13 @@ async def settings_update(settings: Dict[str, str]):
 async def on_message(message: cl.Message):
     query_chain = cl.user_session.get("query_chain")
     response = query_chain.generate_response(
-            query=message.content,
-            category=cl.user_session.get("category", None),
-            sub_category=cl.user_session.get("sub_category", None),
-            source=None,
-            top_k=10,
-            session_id=cl.user_session.get("current_thread_id", None),
-            memory_service=cl.user_session.get("memory_service", None),
-            llm=cl.user_session.get("llm_service"),
-        )["output"]
-    await cl.Message(
-        content=response
-    ).send()
+        query=message.content,
+        category=cl.user_session.get("category", None),
+        sub_category=cl.user_session.get("sub_category", None),
+        source=None,
+        top_k=10,
+        session_id=cl.user_session.get("current_thread_id", None),
+        memory_service=cl.user_session.get("memory_service", None),
+        llm=cl.user_session.get("llm_service"),
+    )["output"]
+    await cl.Message(content=response).send()

@@ -3,3 +3,4 @@
 database
 dataset/rtdocs
 logs
+**/__pycache__/
