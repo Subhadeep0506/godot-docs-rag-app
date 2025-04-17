@@ -38,6 +38,7 @@ async def process_query(request: QueryRequest):
     try:
         llm = LLMFactory().get_chat_model(
             model_name=request.state.model_name,
+            temperature=request.state.temperature,
         )
         query_processor = Query(vectorstore=vector_store)
 

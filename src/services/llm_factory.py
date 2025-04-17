@@ -16,6 +16,7 @@ class LLMFactory:
     @staticmethod
     def get_chat_model(
         model_name: str,
+        temperature: float = 0.7,
     ) -> Union[ChatCohere, ChatGoogleGenerativeAI]:
         if "gemini" in model_name:
             llm_service = LLMService.GEMINI.value
@@ -33,6 +34,7 @@ class LLMFactory:
             logger.info("Using Cohere chat model.")
             return ChatCohere(
                 model=model_name,
+                temperature=temperature,
                 cohere_api_key=os.environ["COHERE_API_KEY"],
             )
         elif llm_service == LLMService.GEMINI.value:
@@ -41,18 +43,21 @@ class LLMFactory:
                 model=model_name,
                 api_key=os.environ["GEMINI_API_KEY"],
                 disable_streaming=True,
+                temperature=temperature,
             )
         elif llm_service == LLMService.MISTRAL.value:
             logger.info("Using Mistral chat model.")
             return ChatMistralAI(
                 model=model_name,
                 api_key=os.environ["MISTRAL_API_KEY"],
+                temperature=temperature,
             )
         elif llm_service == LLMService.GROQ.value:
             logger.info("Using Groq chat model.")
             return ChatGroq(
                 model=model_name,
                 api_key=os.environ["GROQ_API_KEY"],
+                temperature=temperature,
             )
         else:
             raise ValueError("Unsupported chat service.")

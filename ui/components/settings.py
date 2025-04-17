@@ -40,6 +40,14 @@ async def settings_setup():
                 max=2,
                 step=0.1,
             ),
+            Slider(
+                id="top_k",
+                label="Retrieval - Top K",
+                initial=10,
+                min=5,
+                max=100,
+                step=1,
+            ),
             Select(
                 id="vectorstore_service",
                 label="Vectorstore Service",
@@ -69,6 +77,7 @@ async def settings_setup():
                     "Tutorials": "tutorials",
                     "Conversations": "conversations",
                 },
+                initial_value="None",
             ),
             Select(
                 id="sub_category",
@@ -99,6 +108,7 @@ async def settings_setup():
                     "UI": "ui",
                     "XR": "xr",
                 },
+                initial_value="None",
             ),
         ]
     ).send()
