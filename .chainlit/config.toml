@@ -36,7 +36,7 @@ edit_message = true
 
 # Authorize users to spontaneously upload files with messages
 [features.spontaneous_file_upload]
-    enabled = true
+    enabled = false
     # Define accepted file types using MIME types
     # Examples:
     # 1. For specific file types:
@@ -106,11 +106,11 @@ login_page_image_filter = "brightness-100 blur-md"
 # custom_build = "./public/build"
 
 # Specify optional one or more custom links in the header.
-# [[UI.header_links]]
-#     name = "Issues"
-#     display_name = "Report Issue"
-#     icon_url = "https://avatars.githubusercontent.com/u/128686189?s=200&v=4"
-#     url = "https://github.com/Chainlit/chainlit/issues"
+[[UI.header_links]]
+    name = "Fork"
+    display_name = "Fork project from Github"
+    icon_url = "https://avatars.githubusercontent.com/u/128686189?s=200&v=4"
+    url = "https://github.com/Subhadeep0506/godot-docs-rag-app"
 
 [meta]
 generated_by = "2.5.5"

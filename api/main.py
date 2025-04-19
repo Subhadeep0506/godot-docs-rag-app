@@ -5,8 +5,7 @@ sys.path.append("..")
 from src.core.query import Query
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from src.services.embeddings_factory import EmbeddingsFactory
-from src.services.vector_store_factory import VectorStoreFactory
+from src.orchastrator import Orchastrator
 from src.services.llm_factory import LLMFactory
 from src.core.infisical import InfisicalManagedCredentials
 from models import QueryRequest, QueryResponse, QueryState
@@ -23,40 +22,44 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-embeddings = EmbeddingsFactory().get_embeddings(
-    "sentence-transformers", "intfloat/multilingual-e5-large-instruct"
-)
-
-vector_store = VectorStoreFactory().get_vectorstore(
-    vectorstore_service="astradb",
-    embeddings=embeddings,
-)
+orchastrator = Orchastrator()
 
 
 @app.post("/query", response_model=QueryResponse)
 async def process_query(request: QueryRequest):
     try:
-        llm = LLMFactory().get_chat_model(
-            model_name=request.state.model_name,
-            temperature=request.state.temperature,
-        )
-        query_processor = Query(vectorstore=vector_store)
-
-        response = query_processor.generate_response(
+        response = orchastrator.generate_response(
             query=request.query,
             category=request.state.category,
             sub_category=request.state.sub_category,
-            source=None,
+            model_name=request.state.model_name,
             top_k=request.state.top_k,
             session_id=request.session_id,
             memory_service=request.state.memory_service,
-            llm=llm,
+            temperature=request.state.temperature,
         )
         return QueryResponse(response=response)
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.post("/query/reddit", response_model=QueryResponse)
+async def process_query(request: QueryRequest):
+    try:
+        response = orchastrator.generate_reddit_response(
+            query=request.query,
+            model_name=request.state.model_name,
+            temperature=request.state.temperature,
+            username=request.state.reddit_username,
+            relevance=request.state.relevance,
+            top_k=request.state.top_k,
+            session_id=request.session_id,
+            memory_service=request.state.memory_service,
+        )
+        return QueryResponse(response=response)
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn

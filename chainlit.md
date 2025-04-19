@@ -1,14 +1,25 @@
-# Welcome to Chainlit! 🚀🤖
+# Godot Docs and Forums Chatbot
 
-Hi there, Developer! 👋 We're excited to have you on board. Chainlit is a powerful tool designed to help you prototype, debug and share applications built on top of LLMs.
+This repo is the application base for RAG based Chatbot for the Godot Docs and Forums.
 
-## Useful Links 🔗
+## Usage Guide
 
-- **Documentation:** Get started with our comprehensive [Chainlit Documentation](https://docs.chainlit.io) 📚
-- **Discord Community:** Join our friendly [Chainlit Discord](https://discord.gg/k73SQ3FyUh) to ask questions, share your projects, and connect with other developers! 💬
+### Login Page
 
-We can't wait to see what you create with Chainlit! Happy coding! 💻😊
+The login page is used to authenticate the user and access the application. The user can login using either their Github account or Google account. 
+![Login Page|800](./public/login.png)
 
-## Welcome screen
+### Settings Panel
 
-To modify the welcome screen, edit the `chainlit.md` file at the root of your project. If you do not want a welcome screen, just leave this file empty.
+The settings panel is used to change/select Language model that you want to use for generating the response, setting the temperature for applying randomness in response, the category and sub category from the docs to refer for the response etc. The app supports LLMs services from Cohere, Gemini, Groq and Mistral. The app also uses two different services for storing chat histories. A detailed settings panel usage has been explained below:
+![Settings Pane|800l](./public/settings.png)
+
+- Language Model:
+- Model - Temperature:
+- Retrieval - Top K:
+- Vectorstore Service:
+- Memory Service:
+- Category:
+- Sub Category:
+
+#### Category - Sub Category Pairing

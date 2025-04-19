@@ -1,5 +1,5 @@
 import chainlit as cl
-from chainlit.input_widget import Select, Slider
+from chainlit.input_widget import Select, Slider, TextInput
 
 
 async def settings_setup():
@@ -109,6 +109,23 @@ async def settings_setup():
                     "XR": "xr",
                 },
                 initial_value="None",
+            ),
+            TextInput(
+                id="reddit_username",
+                label="Reddit Username",
+                initial="u/Extension-Tap-7488",
+            ),
+            Select(
+                id="relevance",
+                label="Reddit Post Relevance",
+                items={
+                    "Relevance": "relevance",
+                    "Hot": "hot",
+                    "Top": "top",
+                    "New": "new",
+                    "Comments": "comments",
+                },
+                initial_value="top",
             ),
         ]
     ).send()

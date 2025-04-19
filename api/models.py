@@ -9,6 +9,8 @@ class QueryState(BaseModel):
     temperature: float = 0.7
     top_k: int = 10
     memory_service: str
+    reddit_username: Optional[str] = None
+    relevance: Optional[str] = None
 
 
 class QueryRequest(BaseModel):

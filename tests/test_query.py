@@ -27,13 +27,6 @@ llm = LLMFactory().get_chat_model(
     model_name="command-a-03-2025",
 )
 
-filter = {
-    "category": "getting_started",
-    "sub_category": None,
-    "source": None,
-}
-clean_filter = {k: v for k, v in filter.items() if v}
-
 query = Query(vectorstore=vector_store)
 
 response = query.generate_response(

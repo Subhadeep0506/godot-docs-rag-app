@@ -17,7 +17,7 @@ class LLMFactory:
     def get_chat_model(
         model_name: str,
         temperature: float = 0.7,
-    ) -> Union[ChatCohere, ChatGoogleGenerativeAI]:
+    ) -> Union[ChatCohere, ChatGoogleGenerativeAI, ChatMistralAI, ChatGroq]:
         if "gemini" in model_name:
             llm_service = LLMService.GEMINI.value
         elif "command" in model_name:
