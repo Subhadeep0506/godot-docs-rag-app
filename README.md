@@ -6,6 +6,6 @@ This repo is the application base for RAG based Chatbot for the Godot Docs and F
 
 ![Architecture](./assets/diagram.png)
 
-https://github.com/Subhadeep0506/godot-docs-rag-app/blob/master/assets/godot-rag-bot-1.mp4
+https://github.com/user-attachments/assets/8dc453ce-b889-4cc6-a4fc-55742a0a445e
 
 ## Example API POST request
